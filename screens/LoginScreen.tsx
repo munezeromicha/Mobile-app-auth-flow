@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import ellipse from '../../assets/Ellipse.png';
+import { StackNavigationProp } from '@react-navigation/stack';
+import ellipse from '../assets/Ellipse.png';
+import ellipse3 from '../assets/Ellipse3.png';
+type LoginScreenProps = {
+  navigation: StackNavigationProp<any, 'LoginScreen'>;
+};
 
-const Signup: React.FC = () => {
+const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,13 +22,8 @@ const Signup: React.FC = () => {
   return (
     <View style={styles.container}>
       <Image style={styles.ellipse} source={ellipse} />
-      <Text style={styles.title}>SignUp</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Name"
-        value={name}
-        onChangeText={setName}
-      />
+      <Text style={styles.title}>Login</Text>
+
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -38,8 +38,8 @@ const Signup: React.FC = () => {
         value={password}
         onChangeText={setPassword}
       />
-      <TouchableOpacity style={styles.button} onPress={handleSignup}>
-        <Text style={styles.buttonText}>Sign Up</Text>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Recover')}>
+        <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
       <View style={styles.socialContainer}>
@@ -56,19 +56,21 @@ const Signup: React.FC = () => {
           </View>
         </View>
       </View>
+
+      <Image style={styles.ellipse3} source={ellipse3} />
     </View>
   );
 };
 
-export default Signup;
+export default Login;
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      paddingHorizontal: 20,
-      marginTop: 70
+      // backgroundColor: '#f2f2f2',
+      // paddingHorizontal: 20,
 
     },
     ellipse: {
@@ -82,12 +84,11 @@ const styles = StyleSheet.create({
       fontSize: 24,
       fontWeight: 'bold',
       marginBottom: 20,
-      color: '#A53DFF',
-      fontFamily: 'Work Sans'
+      color: '#A53DFF'
     },
     input: {
         padding: 10,
-      width: 330,
+      width: 300,
       height: 50,
       borderBottomWidth: 1,
       borderColor: '#A53DFF',
@@ -96,10 +97,10 @@ const styles = StyleSheet.create({
       marginVertical: 10,
     },
     button: {
-      width: 330,
-      height: 49,
+      width: 300,
+      height: 50,
       backgroundColor: '#A53DFF',
-      borderRadius: 8,
+      borderRadius: 5,
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: 20,
@@ -132,4 +133,9 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
+    ellipse3: {
+      position: 'absolute',
+      bottom: 0,
+      right: -6,
+    }
   });

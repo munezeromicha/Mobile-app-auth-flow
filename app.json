@@ -27,10 +27,7 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-font",
-      {
-        "fonts": ["./assets/fonts/WorkSans-Bold.ttf"]
-      }
+      "expo-font"
     ]
   }
 }
